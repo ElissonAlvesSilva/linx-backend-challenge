@@ -1,0 +1,49 @@
+version: "2.1"
+services:
+  app:
+    container_name: linx-api
+    build:
+      context: .
+      dockerfile: part-1/docker/development/Dockerfile
+    depends_on:
+      - product-database
+      - redis
+    ports:
+      - "4001:4001"
+    volumes:
+      - .:/usr/src/app
+    links:
+      - product-database:product-database
+    networks:
+      - product_network
+    command: nodemon part-1/src/server.js
+  redis:
+    image: redis:4.0-alpine
+    volumes:
+      - ./data/redis:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - product_network
+  product-database:
+    image: mongo
+    container_name: product-database
+    restart: always
+    command: ["--bind_ip_all"]
+    volumes:
+      - ./part-1/src/db/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    environment:
+      MONGO_INITDB_DATABASE: product_db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo product-database:27017/product_db --quiet
+      timeout: 20s
+      retries: 10
+    ports:
+      - '27017-27019:27017-27019'
+    networks:
+      - product_network
+networks:
+  product_network:
+    driver: bridge
+volumes:
+  db_data:
