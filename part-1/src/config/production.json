@@ -1,0 +1,23 @@
+{
+  "environment": "production",
+  "mongo": {
+    "host": "",
+    "username": "",
+    "password": "",
+    "port": "",
+    "database": "",
+    "options": {
+      "useUnifiedTopology": true,
+      "useNewUrlParser": true,
+      "connectTimeoutMS": 1000
+    }
+  },
+  "redis": {
+    "type": "instance",
+    "options": {
+      "parser": "javascript",
+      "host": "redis",
+      "port": 6379
+    }
+  }
+}

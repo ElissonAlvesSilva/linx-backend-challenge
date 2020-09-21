@@ -1,0 +1,23 @@
+{
+  "environment": "development",
+  "mongo": {
+    "host": "product-database",
+    "username": "product",
+    "password": "pr0duc1e",
+    "port": "27017",
+    "database": "product_db",
+    "options": {
+      "useUnifiedTopology": true,
+      "useNewUrlParser": true,
+      "connectTimeoutMS": 1000
+    }
+  },
+  "redis": {
+    "type": "instance",
+    "options": {
+      "parser": "javascript",
+      "host": "redis",
+      "port": 6379
+    }
+  }
+}
