@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "coverage": "nyc npm run test",
     "coverage:html": "nyc --reporter=html npm run test",
-    "mocha": "NODE_ENV=test mocha --recursive",
+    "mocha": "NODE_ENV=test mocha */test --recursive",
     "mocha:watch": "watch 'npm run mocha' --interval 0.1 .",
     "test": "npm run lint && npm run mocha",
     "release": "npm run test && standard-version"

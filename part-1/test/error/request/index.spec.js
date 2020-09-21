@@ -1,6 +1,6 @@
-const RequestError = require('../../../utils/error/request-error');
+const RequestError = require('../../../src/utils/error/request-error');
 
-describe('RequestError', () => {
+describe('part-1 /RequestError', () => {
   it('when object in constructor is empty', () => {
     const requestError = new RequestError({});
 

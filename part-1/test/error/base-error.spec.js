@@ -1,6 +1,6 @@
-const BaseError = require('../../utils/error/base');
+const BaseError = require('../../src/utils/error/base');
 
-describe('BaseError', () => {
+describe('part-1 /BaseError', () => {
   it('should create a object with message and status', () => {
     const message = 'foo';
     const status = 404;
