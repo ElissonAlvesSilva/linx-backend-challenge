@@ -30,9 +30,9 @@ function MemoryDB() {
           'must be pass a key',
         );
       }
-
       const value = this.db.findIndex((item) => item.key === key);
-      if (value > 0) {
+
+      if (value >= 0) {
         return this.db[value].status;
       }
       return false;

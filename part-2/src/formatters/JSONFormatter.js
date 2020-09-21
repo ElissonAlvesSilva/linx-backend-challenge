@@ -1,6 +1,12 @@
 const JSONFormatter = {
-  readFormatter(dumpFile = []) {
-    const dump = dumpFile.split('\n').join(',');
+  readFormatter(dumpFile) {
+    if (!dumpFile) {
+      throw new Error(
+        'must be pass a value',
+      );
+    }
+
+    const dump = dumpFile.split(/\n/).join(',');
 
     const JSONFormatted = JSON.parse(
       JSON.stringify(`[${dump.substring(0, dump.length - 1)}]`),
@@ -12,6 +18,7 @@ const JSONFormatter = {
     if (dump) {
       return JSON.stringify(dump).substring(1).slice(0, -1).replace(/},/g, '}\n');
     }
+
     return dump;
   },
 };
