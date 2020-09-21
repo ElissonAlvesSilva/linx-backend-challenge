@@ -11,9 +11,10 @@ const ProductBusinesses = {
     let httpCode = 200;
     let response = '';
     let cacheKey = '';
+    const updatedProduct = [];
 
     if (_.isEmpty(data)) {
-      throw RequestError({
+      throw new RequestError({
         message: 'Must be pass a value',
       });
     }
@@ -34,9 +35,10 @@ const ProductBusinesses = {
     }
 
     try {
-      data.map(async (item) => {
-        await ProductService.exec(item);
-      });
+      for await (const item of data) {
+        const resp = await ProductService.exec(item);
+        updatedProduct.push(resp);
+      }
     } catch (error) {
       httpCode = 500;
 
@@ -53,6 +55,7 @@ const ProductBusinesses = {
 
     response = {
       message: 'updated products',
+      products: updatedProduct,
     };
 
     Cache.set({
