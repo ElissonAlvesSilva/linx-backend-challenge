@@ -42,6 +42,15 @@ services:
       - '27017-27019:27017-27019'
     networks:
       - product_network
+  api-images:
+    container_name: api-images
+    build:
+      context: .
+      dockerfile: part-2/docker/Dockerfile
+    ports:
+      - "4567:4567"
+    networks:
+      - product_network
 networks:
   product_network:
     driver: bridge
