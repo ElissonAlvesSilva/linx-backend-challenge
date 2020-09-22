@@ -3,14 +3,13 @@
 **Para executar o projeto é necessário ter:**
  - Docker
  - Node
- - Ruby
 
 Para começar a utilizar os projetos é necessário rodar:
 ```bash
 make build
 ```
 
-## PART-1
+### Comandos para o projeto
 
 ### Inicializar projeto
 ```bash
@@ -38,8 +37,8 @@ make logs-tail
 ```
 
 ### Redis
-
-#### Limpar o cache
+**utilizado somente na API**
+#### Limpar o cache 
 ```bash
 make clear-redis
 ```
@@ -49,6 +48,7 @@ make clear-redis
 make redis-cli
 ```
 
+## PART-1
 
 ### Rotas
 
@@ -97,7 +97,7 @@ make redis-cli
 
 ## PART-2
 
-**Para executar o projeto é necessário ter o ruby instalado, devido a dependência do sinatra (utilizado para fazer request das images)**
+**Foi utilzado o sinatra para como api de request de mock**
 
 Feito o make build no inicio do projeto, pasta executar o comando abaixo passando o path do arquivo **tar.gz** e path do output de resultado
 
@@ -119,3 +119,11 @@ node part-2/src/index.js -i ./input-dump.tar.gz -o .
 
 Foi utilizado a seguinte ideia:
  - Como existe images repetidas e somos cobrados pela quantidade de requests, utilizamos um banco em memória(poderia ser texto, mas não achei uma implementação boa de **btree** para node) para armazenar as requests com seu status. Com isso, diminuimos o custo excessivo de request a api
+
+
+## Testes 
+
+Para rodar os testes basta rodar o comando abaixo que o mesmo ira buscar todos os testes e executa-los, em ambos projetos
+```bash
+make test
+```
