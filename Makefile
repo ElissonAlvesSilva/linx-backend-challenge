@@ -1,8 +1,7 @@
-.PHONY: build start stop remove logs lint mocha test run release
+.PHONY: build start stop remove logs lint mocha test run release redis-cli clear-redis
 
 SHELL := /bin/bash
 branch := $(shell git branch | grep \* | cut -d ' ' -f2)
-CONTAINER_NAME := linx-api
 
 build:
 	docker-compose build
@@ -18,10 +17,11 @@ remove:
 	docker-compose rm
 
 logs:
-	docker logs -f $(CONTAINER_NAME) | node_modules/.bin/pino-pretty
+	docker-compose logs --tail=0 --follow
+
 
 logs-tail:
-	docker logs -f --tail 100 $(CONTAINER_NAME) | node_modules/.bin/pino-pretty
+	docker-compose logs --tail=100 --follow
 
 lint:
 	docker-compose run --rm app npm run lint
